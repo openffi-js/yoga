@@ -1,0 +1,14 @@
+diff --git a/cmake/project-defaults.cmake b/cmake/project-defaults.cmake
+index 987529c5..d9f526f8 100644
+--- a/cmake/project-defaults.cmake
++++ b/cmake/project-defaults.cmake
+@@ -44,7 +44,7 @@ add_compile_options(
+
+ add_link_options(
+     # Discard unused sections
+-    $<$<CONFIG:RELEASE>:$<$<CXX_COMPILER_ID:Clang,GNU>:-Wl,--gc-sections>>
+-    $<$<CONFIG:RELEASE>:$<$<CXX_COMPILER_ID:AppleClang>:-Wl,-dead_strip>>)
++    $<$<CONFIG:RELEASE>:$<$<PLATFORM_ID:Linux>:-Wl,--gc-sections>>
++    $<$<CONFIG:RELEASE>:$<$<PLATFORM_ID:Darwin>:-Wl,-dead_strip>>)
+
+ endif()
