@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 let ORG = "@openffi";
-let NAME = "libgit2";
+let NAME = "yoga";
 let TARGETS = [
   [os arch];
   ["linux" "x64"]
@@ -33,7 +33,7 @@ def prepare-packages [ version: string, artifacts_dir: string, resources_path: s
       version: $version,
       os: [ $os ],
       cpu: [ $arch ],
-    } (glob $"($artifacts_dir)/libgit2-($os)-($arch)/*" | each { { src: $in, dst: $"lib/($in | path basename)" } });
+    } (glob $"($artifacts_dir)/($NAME)-($os)-($arch)/*" | each { { src: $in, dst: $"lib/($in | path basename)" } });
 
     $subpackage_name
   };
@@ -46,7 +46,7 @@ def prepare-packages [ version: string, artifacts_dir: string, resources_path: s
     $TARGETS | each {
       let os = $in.os;
       let arch = $in.arch;
-      glob $"($artifacts_dir)/libgit2-($os)-($arch)/*" | each { { src: $in, dst: $"lib/($os)-($arch)/($in | path basename)" } }
+      glob $"($artifacts_dir)/($NAME)-($os)-($arch)/*" | each { { src: $in, dst: $"lib/($os)-($arch)/($in | path basename)" } }
     }
     | flatten
     | append [
