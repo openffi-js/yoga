@@ -88,7 +88,7 @@ def main [] {
   let artifacts_dir = $build_dir | path join "artifacts";
   mkdir $artifacts_dir;
 
-  let run_id = ^gh run list -R openffi-js/libgit2 -w 'Build' -L 1 --json databaseId | from json | get 0.databaseId;
+  let run_id = ^gh run list -R openffi-js/yoga -w 'Build' -L 1 --json databaseId | from json | get 0.databaseId;
   ^gh run download $run_id --dir $artifacts_dir;
 
   let version_str = if $npm_version == null {
