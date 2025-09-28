@@ -1,2 +1,2 @@
-declare const libgit2: string;
-export default libgit2;
+declare const yoga: string;
+export default yoga;

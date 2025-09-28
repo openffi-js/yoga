@@ -8,14 +8,14 @@ const require = createRequire(import.meta.url)
 function findLib() {
   const platform = os.platform();
   const arch = os.arch();
-  const packageName = `@openffi/libgit2-${platform}-${arch}`
+  const packageName = `@openffi/yoga-${platform}-${arch}`
   const extension = platform === "win32" ? "dll" : platform === "darwin" ? "dylib" : "so"
 
   try {
     // Use require.resolve to find the package
     const packageJsonPath = require.resolve(`${packageName}/package.json`)
     const packageDir = path.dirname(packageJsonPath)
-    const libraryPath = path.join(packageDir, "lib", `libgit2.${extension}`)
+    const libraryPath = path.join(packageDir, "lib", `libyogacore.${extension}`)
 
     if (!fs.existsSync(libraryPath)) {
       throw new Error(`Library not found at ${libraryPath}`)
@@ -30,7 +30,7 @@ function findLib() {
 const libraryPath = findLib()
 
 /**
-  * The path to the libgit2 shared library.
+  * The path to the yoga shared library.
   * @type {string}
   */
 export default libraryPath
